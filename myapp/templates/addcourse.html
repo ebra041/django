@@ -1,0 +1,11 @@
+{% block title %}
+Add new Course
+{% endblock title %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+{% endblock body %}

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% block title %}
+Bill Details
+{% endblock title %}
+
+{% block body %}
+
+
+<div class="container">
+    <div class="row justify-content-md-center pt-5">
+  
+      <div class="col-md-7">
+        <h1>Bill Number {{bill.id}}</h1>
+      </div>
+      <div class="col-md-7">
+        <h2>Details</h2>
+        <p>User {{bill.employee}}</p>
+        <p>Client {{bill.client}}</p>
+        <p>Date {{bill.bdate}}</p>
+        <p>Total Cost {{bill.total_price}}</p>
+      </div>
+      <div class="col-md-7">
+  
+        
+        <div  class="my-2 p-2" style="border: 1px solid grey">
+        <h2>Foods in this Bill</h2>
+        {% for food in foods %}
+        <div class="d-flex justify-content-between">{{ food.order.foodname }}<div></div>Cost {{ food.order.cost }}</div>
+        {% endfor %}
+        
+        </div>
+        
+  
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}

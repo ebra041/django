@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Course Ditails
+{% endblock title %}
+
+{% block body %}
+<h1> Course {{course.cname}} </h1>
+<h2>Duration {{course.cduration}}</h2>
+<h2>Students in this Course</h2>
+{% for student in students %}
+<h3><a href=''>{{student.sid.fname}} {{student.sid.sname}}</a></h3>
+{% endfor %}
+{% endblock body %}

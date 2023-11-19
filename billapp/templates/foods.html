@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block title %}
+Food List
+{% endblock title %}
+
+{% block body %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 pb-5">
+          <h1> List of All Foods</h1>
+        </div>
+        {% for food in foods %}
+        <div class="col-md-4">
+          
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" src="{{food.image.url}}" alt="{{ food.foodname }}">
+              <div class="card-body">
+                <a class="text-dark" href="{% url 'food' pk=food.id %}">
+                <h2 style="font-size:18px;font-weight:bold">{{ food.foodname }}</h2>
+                </a>
+                <p class="card-text">{{food.description|truncatechars:50}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="text-dark" href="{% url 'food' pk=food.id %}">
+                      <small class="text-muted">full details</small>
+                    </a>
+                </div>
+              </div>
+              <a href="{% url 'editfood' pk=food.id  %}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">Edit</a>
+              <a href="{% url 'deletefood' pk=food.id  %}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+      <br>
+      <br>
+      {% if page_obj.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+      <span>
+         Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">next</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+      {% endblock body %}
+    </div>
+  </div>
+
+
